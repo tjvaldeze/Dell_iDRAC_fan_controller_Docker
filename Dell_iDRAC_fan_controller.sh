@@ -34,7 +34,7 @@ function retrieve_temperatures () {
   local DATA=$(ipmitool -I $IDRAC_LOGIN_STRING sdr type temperature | grep degrees)
 
   # Parse CPU data
-  local CPU_DATA=$(echo "$DATA" | grep "3\." | grep -Po '\d{2}')
+  local CPU_DATA=$(echo "$DATA" | grep -Po '\d{2}')
   CPU1_TEMPERATURE=$(echo $CPU_DATA | awk '{print $1;}')
   if $IS_CPU2_TEMPERATURE_SENSOR_PRESENT
   then
